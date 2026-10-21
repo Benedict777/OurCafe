@@ -1,5 +1,10 @@
-from django.urls import path
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
 from . import views
+from .api import MenuItemViewSet
+
+router = DefaultRouter()
+router.register('menu', MenuItemViewSet, basename='api-menu')
 
 urlpatterns = [
     path('', views.home, name='home'),
@@ -22,4 +27,6 @@ urlpatterns = [
     path('orders/<int:pk>/delete/', views.order_delete, name='order_delete'),
 
     path('register/', views.register, name='register'),
+
+    path('api/', include(router.urls)),
 ]
