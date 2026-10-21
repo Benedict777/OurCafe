@@ -1,0 +1,30 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<h1>Buyurtmalar</h1>
+<p><a class="btn" href="{% url 'order_create' %}">+ Yangi buyurtma</a></p>
+<table>
+    <thead>
+        <tr>
+            <th>№</th><th>Stol</th><th>Buyurtmachi</th><th>Holat</th><th>Jami</th><th>Sana</th><th>Amallar</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for order in orders %}
+        <tr>
+            <td><a href="{% url 'order_detail' order.pk %}">#{{ order.pk }}</a></td>
+            <td>{{ order.table }}</td>
+            <td>{{ order.user.username }}</td>
+            <td>{{ order.get_status_display }}</td>
+            <td class="price">{{ order.total_price }} so'm</td>
+            <td>{{ order.created_at|date:"d.m.Y H:i" }}</td>
+            <td>
+                <a class="btn btn-small" href="{% url 'order_update' order.pk %}">Tahrirlash</a>
+                <a class="btn btn-small btn-danger" href="{% url 'order_delete' order.pk %}">O'chirish</a>
+            </td>
+        </tr>
+    {% empty %}
+        <tr><td colspan="7">Buyurtmalar yo'q.</td></tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

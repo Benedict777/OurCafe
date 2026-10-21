@@ -1,0 +1,10 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<h1>Kirish</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn" type="submit">Kirish</button>
+</form>
+<p>Akkauntingiz yo'qmi? <a href="{% url 'register' %}">Ro'yxatdan o'ting</a></p>
+{% endblock %}

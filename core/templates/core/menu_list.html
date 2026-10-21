@@ -1,0 +1,34 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<h1>Menyu</h1>
+{% if user.is_authenticated %}
+<p><a class="btn" href="{% url 'menu_create' %}">+ Yangi taom</a></p>
+{% endif %}
+<table>
+    <thead>
+        <tr>
+            <th>№</th><th>Nomi</th><th>Kategoriya</th><th>Narxi</th><th>Holat</th>
+            {% if user.is_authenticated %}<th>Amallar</th>{% endif %}
+        </tr>
+    </thead>
+    <tbody>
+    {% for item in items %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td><a href="{% url 'menu_detail' item.pk %}">{{ item.name }}</a></td>
+            <td>{{ item.get_category_display }}</td>
+            <td class="price">{{ item.price }} so'm</td>
+            <td>{% if item.is_available %}🟢 Mavjud{% else %}🔴 Tugagan{% endif %}</td>
+            {% if user.is_authenticated %}
+            <td>
+                <a class="btn btn-small" href="{% url 'menu_update' item.pk %}">Tahrirlash</a>
+                <a class="btn btn-small btn-danger" href="{% url 'menu_delete' item.pk %}">O'chirish</a>
+            </td>
+            {% endif %}
+        </tr>
+    {% empty %}
+        <tr><td colspan="6">Hozircha taomlar yo'q.</td></tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

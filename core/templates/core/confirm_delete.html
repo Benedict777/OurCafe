@@ -1,0 +1,10 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<h1>O'chirishni tasdiqlang</h1>
+<p>Haqiqatan ham "<b>{{ object }}</b>" ni o'chirmoqchimisiz?</p>
+<form method="post">
+    {% csrf_token %}
+    <button class="btn btn-danger" type="submit">Ha, o'chirish</button>
+    <a class="btn" href="{% url back %}">Bekor qilish</a>
+</form>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<div class="card">
+    <h1>Buyurtma #{{ order.pk }}</h1>
+    <p>Stol: {{ order.table }}</p>
+    <p>Buyurtmachi: {{ order.user.username }}</p>
+    <p>Holat: <span class="badge">{{ order.get_status_display }}</span></p>
+    <p>Izoh: {{ order.note|default:"—" }}</p>
+    <p>Sana: {{ order.created_at|date:"d.m.Y H:i" }}</p>
+    <h3>Taomlar:</h3>
+    <ul>
+        {% for item in order.items.all %}
+        <li>{{ item.name }} — {{ item.price }} so'm</li>
+        {% endfor %}
+    </ul>
+    <p class="price">Jami: {{ order.total_price }} so'm</p>
+</div>
+<a class="btn" href="{% url 'order_list' %}">Orqaga</a>
+<a class="btn" href="{% url 'order_update' order.pk %}">Tahrirlash</a>
+<a class="btn btn-danger" href="{% url 'order_delete' order.pk %}">O'chirish</a>
+{% endblock %}

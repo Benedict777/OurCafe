@@ -1,0 +1,32 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<h1>Stollar</h1>
+{% if user.is_authenticated %}
+<p><a class="btn" href="{% url 'table_create' %}">+ Yangi stol</a></p>
+{% endif %}
+<table>
+    <thead>
+        <tr>
+            <th>Stol</th><th>O'rinlar</th><th>Holat</th>
+            {% if user.is_authenticated %}<th>Amallar</th>{% endif %}
+        </tr>
+    </thead>
+    <tbody>
+    {% for table in tables %}
+        <tr>
+            <td>{{ table }}</td>
+            <td>{{ table.seats }}</td>
+            <td>{% if table.is_available %}🟢 Bo'sh{% else %}🔴 Band{% endif %}</td>
+            {% if user.is_authenticated %}
+            <td>
+                <a class="btn btn-small" href="{% url 'table_update' table.pk %}">Tahrirlash</a>
+                <a class="btn btn-small btn-danger" href="{% url 'table_delete' table.pk %}">O'chirish</a>
+            </td>
+            {% endif %}
+        </tr>
+    {% empty %}
+        <tr><td colspan="4">Stollar yo'q.</td></tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

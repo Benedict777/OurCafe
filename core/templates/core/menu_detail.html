@@ -1,0 +1,15 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<div class="card">
+    <h1>{{ item.name }}</h1>
+    <p>{{ item.description|default:"Tavsif yo'q" }}</p>
+    <p>Kategoriya: <span class="badge">{{ item.get_category_display }}</span></p>
+    <p class="price">{{ item.price }} so'm</p>
+    <p>{% if item.is_available %}🟢 Mavjud{% else %}🔴 Tugagan{% endif %}</p>
+</div>
+<a class="btn" href="{% url 'menu_list' %}">Orqaga</a>
+{% if user.is_authenticated %}
+<a class="btn" href="{% url 'menu_update' item.pk %}">Tahrirlash</a>
+<a class="btn btn-danger" href="{% url 'menu_delete' item.pk %}">O'chirish</a>
+{% endif %}
+{% endblock %}

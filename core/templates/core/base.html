@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}OurCafe{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'core/style.css' %}">
+</head>
+<body>
+<nav>
+    <a href="{% url 'home' %}" class="logo">
+        <img src="{% static 'core/images/coffee.png' %}" alt="Kofe">
+        <b>OurCafe</b>
+    </a>
+    <a href="{% url 'menu_list' %}">Menyu</a>
+    <a href="{% url 'table_list' %}">Stollar</a>
+    <a href="{% url 'order_list' %}">Buyurtmalar</a>
+    <span class="spacer"></span>
+    {% if user.is_authenticated %}
+        <span style="color:#fff">Salom, {{ user.username }}</span>
+        <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit">Chiqish</button>
+        </form>
+    {% else %}
+        <a href="{% url 'login' %}">Kirish</a>
+        <a href="{% url 'register' %}">Ro'yxatdan o'tish</a>
+    {% endif %}
+</nav>
+<div class="container">
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}<li class="{{ message.tags }}">{{ message }}</li>{% endfor %}
+    </ul>
+    {% endif %}
+    {% block content %}{% endblock %}
+</div>
+</body>
+</html>
