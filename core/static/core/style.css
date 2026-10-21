@@ -1,0 +1,31 @@
+* { box-sizing: border-box; }
+body { font-family: Arial, sans-serif; margin: 0; background: #faf6f0; color: #3b2a1a; }
+nav { background: #6f4e37; padding: 14px 30px; display: flex; gap: 18px; align-items: center; }
+nav a, nav button { color: #fff; text-decoration: none; font-size: 16px; background: none; border: none; cursor: pointer; }
+nav a:hover, nav button:hover { text-decoration: underline; }
+nav .spacer { flex: 1; }
+nav form { margin: 0; }
+.container { max-width: 900px; margin: 30px auto; padding: 0 20px; }
+h1, h2 { color: #6f4e37; }
+.card { background: #fff; border-radius: 10px; padding: 18px; margin-bottom: 14px; box-shadow: 0 2px 6px rgba(0,0,0,.1); }
+.btn { display: inline-block; padding: 8px 16px; background: #6f4e37; color: #fff; border: none; border-radius: 6px; text-decoration: none; cursor: pointer; font-size: 15px; }
+.btn:hover { background: #55392a; }
+.btn-danger { background: #b83232; }
+.btn-danger:hover { background: #8f2525; }
+.messages { list-style: none; padding: 0; }
+.messages li { background: #dff0d8; padding: 10px 14px; border-radius: 6px; margin-bottom: 10px; }
+input, select, textarea { padding: 8px; margin: 4px 0 12px; width: 100%; max-width: 400px; border: 1px solid #ccc; border-radius: 6px; }
+input[type=checkbox] { width: auto; }
+ul.errorlist { color: #b83232; padding-left: 18px; }
+.price { font-weight: bold; color: #2e7d32; }
+.badge { background: #eee; padding: 3px 8px; border-radius: 10px; font-size: 13px; }
+table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 6px rgba(0,0,0,.1); }
+th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid #eee; }
+th { background: #6f4e37; color: #fff; }
+tr:hover td { background: #faf6f0; }
+.btn-small { padding: 4px 10px; font-size: 13px; }
+.messages li.error { background: #f8d7da; }
+.logo { display: flex; align-items: center; gap: 8px; }
+.logo img { height: 34px; width: auto; border-radius: 50%; object-fit: cover; }
+.hero { text-align: center; margin-bottom: 20px; }
+.hero img { height: 200px; width: auto; max-width: 100%; border-radius: 12px; object-fit: cover; margin-bottom: 6px; }
